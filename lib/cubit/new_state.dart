@@ -18,4 +18,6 @@ class NewState with _$NewState {
 }) = _Error;
 
   const factory NewState.noInternet() = _NoInternet;
+
+  const factory NewState.loadMore() = _LoadMore;
 }

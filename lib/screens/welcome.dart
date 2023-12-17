@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dailynews24/screens/home/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dailynews24/common/colors.dart';
@@ -27,7 +28,7 @@ class _WelcomeState extends State<Welcome> {
         // Navigate to the home screen after 2 seconds
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => const Home(),
+            builder: (context) => const DashboardPage(),
           ),
         );
       });

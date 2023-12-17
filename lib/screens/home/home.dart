@@ -6,6 +6,7 @@ import 'package:dailynews24/models/category_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loadmore/loadmore.dart';
 import 'package:dailynews24/common/colors.dart';
@@ -26,210 +27,193 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final selectedCategory = ValueNotifier<CategoryModel?>(null);
+  final selectedCategory = ValueNotifier<CategoryModel?>(
+    null,
+  );
+
+  final newsCat = const CategoryModel(id: 1, name: 'Top News', slug: 'news');
 
   int page = 1;
   bool isFinish = false;
   bool data = false;
   ListData listData = ListData([], false);
   List<dynamic> articles = [];
+  late final ScrollController newsScrollController;
+
+  void scrollListener() {
+    if (newsScrollController.position.pixels == newsScrollController.position.maxScrollExtent) {
+      context.read<NewCubit>().loadMore(
+            keyword: selectedCategory.value == null ? null : selectedCategory.value!.id,
+          );
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    //checkConnectivity();
+    selectedCategory.value = newsCat;
+    newsScrollController = ScrollController()..addListener(scrollListener);
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => NewCubit(),
-        ),
-        BlocProvider(
-          create: (context) => GetCategoriesCubit(),
-        ),
-      ],
-      child: Builder(builder: (context) {
-        return Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text(
-              "DailyNews24",
-              style: GoogleFonts.aBeeZee(
-                fontSize: 20,
-                color: AppColors.white,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            leading: const Icon(
-              Icons.settings,
-              color: AppColors.white,
-              size: 25,
-            ),
-            backgroundColor: Colors.red,
-            elevation: 5,
-            actions: const [
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.search,
-                  size: 34,
-                  color: AppColors.white,
-                ),
-              )
-            ],
-          ),
-          body: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              BlocConsumer<GetCategoriesCubit, GetCategoriesState>(
-                listener: (context, state) {
-                  state.maybeWhen(
-                    orElse: () {},
-                    error: (message) {
-                      Fluttertoast.showToast(
-                        msg: message,
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: AppColors.lighterGray,
-                        textColor: AppColors.black,
-                        fontSize: 16.0,
-                      );
-                    },
+    return Builder(builder: (context) {
+      return Column(
+        children: [
+          BlocConsumer<GetCategoriesCubit, GetCategoriesState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                orElse: () {},
+                error: (message) {
+                  Fluttertoast.showToast(
+                    msg: message,
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: AppColors.lighterGray,
+                    textColor: AppColors.black,
+                    fontSize: 16.0,
                   );
                 },
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    orElse: () => const SizedBox(),
-                    loading: () => Row(
-                      children: List.generate(
-                        5,
-                        (index) => Skeleton(
-                          isLoading: true,
-                          skeleton: SkeletonItem(
-                            child: Container(
-                              width: 80,
-                              height: 50,
-                            ),
-                          ),
-                          child: const Text(''),
+              );
+            },
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () => const SizedBox(),
+                loading: () => Row(
+                  children: List.generate(
+                    5,
+                    (index) => const Skeleton(
+                      isLoading: true,
+                      skeleton: SkeletonItem(
+                        child: SizedBox(
+                          width: 80,
+                          height: 50,
                         ),
                       ),
+                      child: Text(''),
                     ),
-                    loaded: (categories) {
-                      return SizedBox(
-                        height: 50,
-                        width: size.width,
-                        child: ValueListenableBuilder(
-                          valueListenable: selectedCategory,
-                          builder: (context, category, _) {
-                            return ListView.builder(
-                              itemCount: categories.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) => CategoryItem(
-                                categoryName: categories[index].name,
-                                isActive: categories[index] == category,
-                                onClick: () {
-                                  selectedCategory.value = categories[index];
-                                  context.read<NewCubit>().getNews(
-                                        keyword: categories[index].id,
-                                      );
-                                },
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              // SizedBox(
-              //   height: size.height,
-              //   child: LoadMore(
-              //     isFinish: isFinish,
-              //     onLoadMore: getNewsData,
-              //     whenEmptyLoad: true,
-              //     delegate: const DefaultLoadMoreDelegate(),
-              //     textBuilder: DefaultLoadMoreTextBuilder.english,
-              //     child: ListView.builder(
-              //       itemCount: listData.data.length,
-              //       itemBuilder: (context, index) => NewsCard(
-              //         article: listData.data ?? [],
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              BlocConsumer<NewCubit, NewState>(
-                listener: (context, state) {
-                  state.maybeWhen(
-                    orElse: () {},
-                    error: (message) {
-                      Fluttertoast.showToast(
-                        msg: message,
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: AppColors.lighterGray,
-                        textColor: AppColors.black,
-                        fontSize: 16.0,
-                      );
-                    },
-                    noInternet: () {
-                      if (mounted) {
-                        Navigator.of(
-                          context,
-                          rootNavigator: true,
-                        ).push(
-                          MaterialPageRoute(
-                            builder: (context) => NoConnectivity(
-                              onTap: () => context.read<NewCubit>().getNews(),
-                            ),
+                  ),
+                ),
+                loaded: (categories) {
+                  return Container(
+                    height: 40,
+                    width: size.width,
+                    color: Colors.white,
+                    child: ValueListenableBuilder(
+                      valueListenable: selectedCategory,
+                      builder: (context, category, _) {
+                        return ListView.builder(
+                          itemCount: categories.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) => CategoryItem(
+                            categoryName: categories[index].name,
+                            isActive: categories[index] == category,
+                            onClick: () {
+                              selectedCategory.value = categories[index];
+                              if (selectedCategory.value == newsCat) {
+                                context.read<NewCubit>().getNews();
+                              } else {
+                                context.read<NewCubit>().getNews(
+                                      keyword: categories[index].id,
+                                    );
+                              }
+                            },
                           ),
                         );
-                      }
-                    },
+                      },
+                    ),
                   );
                 },
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    orElse: () => const SizedBox(),
-                    error: (message) {
-                      return Center(
-                        child: Text(
-                          message,
-                          textAlign: TextAlign.center,
-                        ),
-                      );
-                    },
-                    loading: () => const CircularProgressIndicator(),
-                    news: (data) {
-                      return Flexible(
-                        child: ListView.builder(
-                          itemCount: data.length,
-                          itemBuilder: (context, index) => NewsCard(
-                            article: data[index],
-                          ),
-                          shrinkWrap: true,
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ],
+              );
+            },
           ),
-        );
-      }),
-    );
+          const SizedBox(
+            height: 20,
+          ),
+          BlocConsumer<NewCubit, NewState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                orElse: () {},
+                error: (message) {
+                  Fluttertoast.showToast(
+                    msg: message,
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: AppColors.lighterGray,
+                    textColor: AppColors.black,
+                    fontSize: 16.0,
+                  );
+                },
+                noInternet: () {
+                  if (mounted) {
+                    Navigator.of(
+                      context,
+                      rootNavigator: true,
+                    ).push(
+                      MaterialPageRoute(
+                        builder: (context) => NoConnectivity(
+                          onTap: () => context.read<NewCubit>().getNews(),
+                        ),
+                      ),
+                    );
+                  }
+                },
+              );
+            },
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () {
+                  final news = context.read<NewCubit>().news;
+                  return Flexible(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: ListView.builder(
+                            controller: newsScrollController,
+                            itemCount: news.length,
+                            itemBuilder: (context, index) => NewsCard(
+                              article: news[index],
+                            ),
+                            shrinkWrap: true,
+                          ),
+                        ),
+                        state.maybeWhen(
+                            orElse: () => const SizedBox(),
+                            loadMore: () {
+                              return const Column(
+                                children: [
+                                  Gap(10),
+                                  SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  Gap(10),
+                                ],
+                              );
+                            }),
+                      ],
+                    ),
+                  );
+                },
+                error: (message) {
+                  return Center(
+                    child: Text(
+                      message,
+                      textAlign: TextAlign.center,
+                    ),
+                  );
+                },
+                loading: () => const CircularProgressIndicator(),
+              );
+            },
+          ),
+        ],
+      );
+    });
   }
 }

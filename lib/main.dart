@@ -1,4 +1,7 @@
+import 'package:dailynews24/cubit/get_categories_cubit.dart';
+import 'package:dailynews24/cubit/new_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dailynews24/screens/welcome.dart';
 
@@ -13,17 +16,26 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'DailyNews 24',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.redAccent,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => NewCubit(),
         ),
-        useMaterial3: true,
+        BlocProvider(
+          create: (context) => GetCategoriesCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'DailyNews 24',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.redAccent,
+          ),
+          useMaterial3: true,
+        ),
+        home: const Welcome(),
       ),
-      home: const Welcome(),
     );
   }
 }

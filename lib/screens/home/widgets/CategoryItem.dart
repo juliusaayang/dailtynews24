@@ -23,31 +23,27 @@ class _CategoryItemState extends State<CategoryItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => widget.onClick(),
-      child: Container(
-        width: 130,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: widget.isActive ? AppColors.primary : AppColors.lighterBlack,
-            width: widget.isActive ? 2 : 1,
-          ),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        alignment: Alignment.center,
-        margin: const EdgeInsets.only(
-          left: 5,
-          right: 5,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Text(
-            widget.categoryName[0].toUpperCase().toString() + widget.categoryName.substring(1).toString(),
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                color: widget.isActive ? AppColors.primary : AppColors.lighterBlack,
-                fontWeight: widget.isActive ? FontWeight.w600 : FontWeight.w500,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              widget.categoryName[0].toUpperCase().toString() + widget.categoryName.substring(1).toString(),
+              style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                  color: widget.isActive ? AppColors.black : AppColors.lighterBlack,
+                  fontWeight: widget.isActive ? FontWeight.w700 : FontWeight.w500,
+                ),
               ),
             ),
-          ),
+            const SizedBox(height: 5),
+            Container(
+              width: 100,
+              height: 4,
+              color: widget.isActive ?  AppColors.primary : Colors.transparent,
+            ),
+          ],
         ),
       ),
     );

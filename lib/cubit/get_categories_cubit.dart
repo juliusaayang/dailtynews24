@@ -25,11 +25,15 @@ class GetCategoriesCubit extends Cubit<GetCategoriesState> {
           final category = (decodedBody as List<dynamic>)
               .map(
                 (e) => CategoryModel.fromJson(
-              e as Map<String, dynamic>,
-            ),
-          )
+                  e as Map<String, dynamic>,
+                ),
+              )
               .toList();
-          emit(GetCategoriesState.loaded(categories: category));
+          final List<CategoryModel> dummyCat = [
+            const CategoryModel(id: 1, name: 'Top News', slug: 'news'),
+          ];
+          dummyCat.addAll(category);
+          emit(GetCategoriesState.loaded(categories: dummyCat));
         } else {
           emit(
             GetCategoriesState.error(

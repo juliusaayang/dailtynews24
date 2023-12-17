@@ -23,6 +23,7 @@ mixin _$NewState {
     required TResult Function(List<News> data) news,
     required TResult Function(String message) error,
     required TResult Function() noInternet,
+    required TResult Function() loadMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$NewState {
     TResult? Function(List<News> data)? news,
     TResult? Function(String message)? error,
     TResult? Function()? noInternet,
+    TResult? Function()? loadMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$NewState {
     TResult Function(List<News> data)? news,
     TResult Function(String message)? error,
     TResult Function()? noInternet,
+    TResult Function()? loadMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$NewState {
     required TResult Function(_News value) news,
     required TResult Function(_Error value) error,
     required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_LoadMore value) loadMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$NewState {
     TResult? Function(_News value)? news,
     TResult? Function(_Error value)? error,
     TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_LoadMore value)? loadMore,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$NewState {
     TResult Function(_News value)? news,
     TResult Function(_Error value)? error,
     TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_LoadMore value)? loadMore,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +140,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(List<News> data) news,
     required TResult Function(String message) error,
     required TResult Function() noInternet,
+    required TResult Function() loadMore,
   }) {
     return initial();
   }
@@ -146,6 +153,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(List<News> data)? news,
     TResult? Function(String message)? error,
     TResult? Function()? noInternet,
+    TResult? Function()? loadMore,
   }) {
     return initial?.call();
   }
@@ -158,6 +166,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(List<News> data)? news,
     TResult Function(String message)? error,
     TResult Function()? noInternet,
+    TResult Function()? loadMore,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -174,6 +183,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_News value) news,
     required TResult Function(_Error value) error,
     required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_LoadMore value) loadMore,
   }) {
     return initial(this);
   }
@@ -186,6 +196,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_News value)? news,
     TResult? Function(_Error value)? error,
     TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_LoadMore value)? loadMore,
   }) {
     return initial?.call(this);
   }
@@ -198,6 +209,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_News value)? news,
     TResult Function(_Error value)? error,
     TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_LoadMore value)? loadMore,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -254,6 +266,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(List<News> data) news,
     required TResult Function(String message) error,
     required TResult Function() noInternet,
+    required TResult Function() loadMore,
   }) {
     return loading();
   }
@@ -266,6 +279,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(List<News> data)? news,
     TResult? Function(String message)? error,
     TResult? Function()? noInternet,
+    TResult? Function()? loadMore,
   }) {
     return loading?.call();
   }
@@ -278,6 +292,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(List<News> data)? news,
     TResult Function(String message)? error,
     TResult Function()? noInternet,
+    TResult Function()? loadMore,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -294,6 +309,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_News value) news,
     required TResult Function(_Error value) error,
     required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_LoadMore value) loadMore,
   }) {
     return loading(this);
   }
@@ -306,6 +322,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_News value)? news,
     TResult? Function(_Error value)? error,
     TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_LoadMore value)? loadMore,
   }) {
     return loading?.call(this);
   }
@@ -318,6 +335,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_News value)? news,
     TResult Function(_Error value)? error,
     TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_LoadMore value)? loadMore,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -405,6 +423,7 @@ class _$NewsImpl implements _News {
     required TResult Function(List<News> data) news,
     required TResult Function(String message) error,
     required TResult Function() noInternet,
+    required TResult Function() loadMore,
   }) {
     return news(data);
   }
@@ -417,6 +436,7 @@ class _$NewsImpl implements _News {
     TResult? Function(List<News> data)? news,
     TResult? Function(String message)? error,
     TResult? Function()? noInternet,
+    TResult? Function()? loadMore,
   }) {
     return news?.call(data);
   }
@@ -429,6 +449,7 @@ class _$NewsImpl implements _News {
     TResult Function(List<News> data)? news,
     TResult Function(String message)? error,
     TResult Function()? noInternet,
+    TResult Function()? loadMore,
     required TResult orElse(),
   }) {
     if (news != null) {
@@ -445,6 +466,7 @@ class _$NewsImpl implements _News {
     required TResult Function(_News value) news,
     required TResult Function(_Error value) error,
     required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_LoadMore value) loadMore,
   }) {
     return news(this);
   }
@@ -457,6 +479,7 @@ class _$NewsImpl implements _News {
     TResult? Function(_News value)? news,
     TResult? Function(_Error value)? error,
     TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_LoadMore value)? loadMore,
   }) {
     return news?.call(this);
   }
@@ -469,6 +492,7 @@ class _$NewsImpl implements _News {
     TResult Function(_News value)? news,
     TResult Function(_Error value)? error,
     TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_LoadMore value)? loadMore,
     required TResult orElse(),
   }) {
     if (news != null) {
@@ -556,6 +580,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(List<News> data) news,
     required TResult Function(String message) error,
     required TResult Function() noInternet,
+    required TResult Function() loadMore,
   }) {
     return error(message);
   }
@@ -568,6 +593,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(List<News> data)? news,
     TResult? Function(String message)? error,
     TResult? Function()? noInternet,
+    TResult? Function()? loadMore,
   }) {
     return error?.call(message);
   }
@@ -580,6 +606,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(List<News> data)? news,
     TResult Function(String message)? error,
     TResult Function()? noInternet,
+    TResult Function()? loadMore,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -596,6 +623,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_News value) news,
     required TResult Function(_Error value) error,
     required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_LoadMore value) loadMore,
   }) {
     return error(this);
   }
@@ -608,6 +636,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_News value)? news,
     TResult? Function(_Error value)? error,
     TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_LoadMore value)? loadMore,
   }) {
     return error?.call(this);
   }
@@ -620,6 +649,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_News value)? news,
     TResult Function(_Error value)? error,
     TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_LoadMore value)? loadMore,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -681,6 +711,7 @@ class _$NoInternetImpl implements _NoInternet {
     required TResult Function(List<News> data) news,
     required TResult Function(String message) error,
     required TResult Function() noInternet,
+    required TResult Function() loadMore,
   }) {
     return noInternet();
   }
@@ -693,6 +724,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult? Function(List<News> data)? news,
     TResult? Function(String message)? error,
     TResult? Function()? noInternet,
+    TResult? Function()? loadMore,
   }) {
     return noInternet?.call();
   }
@@ -705,6 +737,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult Function(List<News> data)? news,
     TResult Function(String message)? error,
     TResult Function()? noInternet,
+    TResult Function()? loadMore,
     required TResult orElse(),
   }) {
     if (noInternet != null) {
@@ -721,6 +754,7 @@ class _$NoInternetImpl implements _NoInternet {
     required TResult Function(_News value) news,
     required TResult Function(_Error value) error,
     required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_LoadMore value) loadMore,
   }) {
     return noInternet(this);
   }
@@ -733,6 +767,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult? Function(_News value)? news,
     TResult? Function(_Error value)? error,
     TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_LoadMore value)? loadMore,
   }) {
     return noInternet?.call(this);
   }
@@ -745,6 +780,7 @@ class _$NoInternetImpl implements _NoInternet {
     TResult Function(_News value)? news,
     TResult Function(_Error value)? error,
     TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_LoadMore value)? loadMore,
     required TResult orElse(),
   }) {
     if (noInternet != null) {
@@ -756,4 +792,130 @@ class _$NoInternetImpl implements _NoInternet {
 
 abstract class _NoInternet implements NewState {
   const factory _NoInternet() = _$NoInternetImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadMoreImplCopyWith<$Res> {
+  factory _$$LoadMoreImplCopyWith(
+          _$LoadMoreImpl value, $Res Function(_$LoadMoreImpl) then) =
+      __$$LoadMoreImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadMoreImplCopyWithImpl<$Res>
+    extends _$NewStateCopyWithImpl<$Res, _$LoadMoreImpl>
+    implements _$$LoadMoreImplCopyWith<$Res> {
+  __$$LoadMoreImplCopyWithImpl(
+      _$LoadMoreImpl _value, $Res Function(_$LoadMoreImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$LoadMoreImpl implements _LoadMore {
+  const _$LoadMoreImpl();
+
+  @override
+  String toString() {
+    return 'NewState.loadMore()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadMoreImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<News> data) news,
+    required TResult Function(String message) error,
+    required TResult Function() noInternet,
+    required TResult Function() loadMore,
+  }) {
+    return loadMore();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<News> data)? news,
+    TResult? Function(String message)? error,
+    TResult? Function()? noInternet,
+    TResult? Function()? loadMore,
+  }) {
+    return loadMore?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<News> data)? news,
+    TResult Function(String message)? error,
+    TResult Function()? noInternet,
+    TResult Function()? loadMore,
+    required TResult orElse(),
+  }) {
+    if (loadMore != null) {
+      return loadMore();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_News value) news,
+    required TResult Function(_Error value) error,
+    required TResult Function(_NoInternet value) noInternet,
+    required TResult Function(_LoadMore value) loadMore,
+  }) {
+    return loadMore(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_News value)? news,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_NoInternet value)? noInternet,
+    TResult? Function(_LoadMore value)? loadMore,
+  }) {
+    return loadMore?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_News value)? news,
+    TResult Function(_Error value)? error,
+    TResult Function(_NoInternet value)? noInternet,
+    TResult Function(_LoadMore value)? loadMore,
+    required TResult orElse(),
+  }) {
+    if (loadMore != null) {
+      return loadMore(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadMore implements NewState {
+  const factory _LoadMore() = _$LoadMoreImpl;
 }

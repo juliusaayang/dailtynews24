@@ -33,4 +33,11 @@ class ApiService {
       headers: headers,
     );
   }
+
+  Future<http.Response> searchNews(String text) {
+    return client.get(
+      Uri.parse('https://dailynews24.ng/wp-json/wp/v2/posts?search=$text'),
+      headers: headers,
+    );
+  }
 }
