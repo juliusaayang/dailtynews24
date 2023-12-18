@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dailynews24/common/common.dart';
@@ -25,6 +26,7 @@ class NewCubit extends Cubit<NewState> {
     emit(const NewState.loading());
     this.page = 1;
     if (await getInternetStatus()) {
+      log(keyword.toString());
       try {
         final response = await ApiService().getEverything(keyword, page);
         if (response.statusCode == HttpStatus.ok) {

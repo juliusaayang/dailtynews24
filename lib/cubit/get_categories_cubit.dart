@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -33,6 +34,7 @@ class GetCategoriesCubit extends Cubit<GetCategoriesState> {
             const CategoryModel(id: 1, name: 'Top News', slug: 'news'),
           ];
           dummyCat.addAll(category);
+          log(dummyCat.toString());
           emit(GetCategoriesState.loaded(categories: dummyCat));
         } else {
           emit(

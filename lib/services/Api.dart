@@ -21,7 +21,7 @@ class ApiService {
   ) {
     return client.get(
       Uri.parse(
-        'https://dailynews24.ng/wp-json/wp/v2/posts?${keyword == null ? '' : 'categories= $keyword'}${'&per_page=10'}${page == null ? '' : '&page=$page'}',
+        'https://dailynews24.ng/wp-json/wp/v2/posts?${keyword == null ? '' : 'categories=$keyword'}${'&per_page=10'}${page == null ? '' : '&page=$page'}',
       ),
       headers: headers,
     );
