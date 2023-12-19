@@ -14,142 +14,149 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SettingsCard(
-              title: 'Support Daily News 24',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SettingsDetailsPage(
-                        link: 'https://dailynews24.ng/support-daily-news-24/',
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-            SettingsCard(
-              title: 'Advertise With Us',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SettingsDetailsPage(
-                        link: 'https://dailynews24.ng/advertise-with-us/',
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-            SettingsCard(
-              title: 'Contact Us',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SettingsDetailsPage(
-                        link: 'https://dailynews24.ng/contact-us/',
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-            SettingsCard(
-              title: 'Privacy Policy',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SettingsDetailsPage(
-                        link: 'https://dailynews24.ng/privacy/',
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-            SettingsCard(
-              title: 'About Us',
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SettingsDetailsPage(
-                        link: 'https://dailynews24.ng/about-us/',
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-            const Gap(50),
-            const Text(
-              'Our Socials',
-              style: TextStyle(
-                color: AppColors.primary,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
+    final size = MediaQuery.of(context).size;
+    return Container(
+      color: Colors.white,
+      height: size.height,
+      width: size.width,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SettingsCard(
+                title: 'Support Daily News 24',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SettingsDetailsPage(
+                          link: 'https://dailynews24.ng/support-daily-news-24/',
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
-            ),
-            const Gap(20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                imageHolder(
-                  'facebook.jpeg',
-                  onTap: () => UrlLauncherUtil.launchUrlLink(
+              SettingsCard(
+                title: 'Advertise With Us',
+                onTap: () {
+                  Navigator.push(
                     context,
-                    url: 'web.facebook.com/dailynews24ng',
-                    scheme: 'https',
-                  ),
-                ),
-                imageHolder(
-                  'tiktok.jpeg',
-                  onTap: () => UrlLauncherUtil.launchUrlLink(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SettingsDetailsPage(
+                          link: 'https://dailynews24.ng/advertise-with-us/',
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+              SettingsCard(
+                title: 'Contact Us',
+                onTap: () {
+                  Navigator.push(
                     context,
-                    url: 'www.tiktok.com/@dailynews24.ng?_t=8i4QsEYYcly&_r=1',
-                    scheme: 'https',
-                  ),
-                ),
-                imageHolder(
-                  'x.jpg',
-                  onTap: () => UrlLauncherUtil.launchUrlLink(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SettingsDetailsPage(
+                          link: 'https://dailynews24.ng/contact-us/',
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+              SettingsCard(
+                title: 'Privacy Policy',
+                onTap: () {
+                  Navigator.push(
                     context,
-                    url: 'twitter.com/dailynews24_NG',
-                    scheme: 'https',
-                  ),
-                ),
-                imageHolder(
-                  'youtube.jpeg',
-                  onTap: () => UrlLauncherUtil.launchUrlLink(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SettingsDetailsPage(
+                          link: 'https://dailynews24.ng/privacy/',
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+              SettingsCard(
+                title: 'About Us',
+                onTap: () {
+                  Navigator.push(
                     context,
-                    url: 'www.youtube.com/channel/UCx-tONSNtZJ7R1j5EiAlKPA',
-                    scheme: 'https',
-                  ),
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SettingsDetailsPage(
+                          link: 'https://dailynews24.ng/about-us/',
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+              const Gap(50),
+              const Text(
+                'Our Socials',
+                style: TextStyle(
+                  color: AppColors.primary,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
-                imageHolder(
-                  'threads.png',
-                  onTap: () => UrlLauncherUtil.launchUrlLink(
-                    context,
-                    url: 'www.threads.net/@dailynews24.ng',
-                    scheme: 'https',
+              ),
+              const Gap(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  imageHolder(
+                    'facebook.jpeg',
+                    onTap: () => UrlLauncherUtil.launchUrlLink(
+                      context,
+                      url: 'web.facebook.com/dailynews24ng',
+                      scheme: 'https',
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  imageHolder(
+                    'tiktok.jpeg',
+                    onTap: () => UrlLauncherUtil.launchUrlLink(
+                      context,
+                      url: 'www.tiktok.com/@dailynews24.ng?_t=8i4QsEYYcly&_r=1',
+                      scheme: 'https',
+                    ),
+                  ),
+                  imageHolder(
+                    'x.jpg',
+                    onTap: () => UrlLauncherUtil.launchUrlLink(
+                      context,
+                      url: 'twitter.com/dailynews24_NG',
+                      scheme: 'https',
+                    ),
+                  ),
+                  imageHolder(
+                    'youtube.jpeg',
+                    onTap: () => UrlLauncherUtil.launchUrlLink(
+                      context,
+                      url: 'www.youtube.com/channel/UCx-tONSNtZJ7R1j5EiAlKPA',
+                      scheme: 'https',
+                    ),
+                  ),
+                  imageHolder(
+                    'threads.png',
+                    onTap: () => UrlLauncherUtil.launchUrlLink(
+                      context,
+                      url: 'www.threads.net/@dailynews24.ng',
+                      scheme: 'https',
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

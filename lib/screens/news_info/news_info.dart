@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:dailynews24/common/colors.dart';
@@ -35,12 +36,26 @@ class _NewsInfoState extends State<NewsInfo> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.black,
+        centerTitle: true,
+        title: Padding(
+          padding: const EdgeInsets.only(
+            bottom: 10,
+            top: 10,
+          ),
+          child: Image.asset(
+            'assets/images/news_log.png',
+            height: 70,
+            color: AppColors.primary,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.white,
+        elevation: 2,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
           child: const Icon(
             Icons.arrow_back_sharp,
-            color: AppColors.white,
+            color: AppColors.black,
           ),
         ),
       ),
@@ -48,35 +63,49 @@ class _NewsInfoState extends State<NewsInfo> {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            Image.network(
-              widget.news.image.toString(),
-              fit: BoxFit.contain,
-              width: size.width,
-              frameBuilder: (
-                BuildContext context,
-                Widget child,
-                int? frame,
-                bool wasSynchronouslyLoaded,
-              ) {
-                if (wasSynchronouslyLoaded) return child;
-                if (frame == null) {
-                  return Center(
-                    child: Skeleton(
-                      isLoading: true,
-                      skeleton: SkeletonParagraph(),
-                      child: const Text(''),
-                    ),
-                  );
-                }
-                return child;
-              },
+            const Gap(10),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Stack(
+                children: [
+                  Image.network(
+                    widget.news.image.toString(),
+                    fit: BoxFit.contain,
+                    width: size.width,
+                    height: 200,
+                    frameBuilder: (
+                      BuildContext context,
+                      Widget child,
+                      int? frame,
+                      bool wasSynchronouslyLoaded,
+                    ) {
+                      if (wasSynchronouslyLoaded) return child;
+                      if (frame == null) {
+                        return Center(
+                          child: Skeleton(
+                            isLoading: true,
+                            skeleton: SkeletonParagraph(),
+                            child: const Text(''),
+                          ),
+                        );
+                      }
+                      return child;
+                    },
+                  ),
+                  Container(
+                    color: Colors.black.withOpacity(0.5),
+                    height: 200,
+                    width: size.width,
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(
                 top: 10,
                 bottom: 10,
-                left: 8,
-                right: 8,
+                left: 20,
+                right: 20,
               ),
               child: Column(
                 children: [

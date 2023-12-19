@@ -31,7 +31,7 @@ class GetCategoriesCubit extends Cubit<GetCategoriesState> {
               )
               .toList();
           final List<CategoryModel> dummyCat = [
-            const CategoryModel(id: 1, name: 'Top News', slug: 'news'),
+            const CategoryModel(id: 0, name: 'Home', slug: 'news'),
           ];
           dummyCat.addAll(category);
           log(dummyCat.toString());

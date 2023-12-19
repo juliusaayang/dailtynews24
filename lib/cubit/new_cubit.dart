@@ -21,12 +21,11 @@ class NewCubit extends Cubit<NewState> {
 
   Future<void> getNews({
     int? keyword,
-    int? page,
   }) async {
     emit(const NewState.loading());
-    this.page = 1;
+    page = 1;
+    news.clear();
     if (await getInternetStatus()) {
-      log(keyword.toString());
       try {
         final response = await ApiService().getEverything(keyword, page);
         if (response.statusCode == HttpStatus.ok) {

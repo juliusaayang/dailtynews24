@@ -28,7 +28,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 android {
     namespace "com.example.dailtynews24"
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion '21'
+    ndkVersion '24'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

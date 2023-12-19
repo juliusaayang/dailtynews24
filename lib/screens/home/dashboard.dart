@@ -50,30 +50,15 @@ class _DashboardPageState extends State<DashboardPage> {
                 color: AppColors.primary,
               ),
             ),
-
-            // leading: const Icon(
-            //   Icons.settings,
-            //   color: AppColors.white,
-            //   size: 25,
-            // ),
             backgroundColor: Colors.white,
             foregroundColor: Colors.white,
             elevation: 0,
-            // actions: const [
-            //   Padding(
-            //     padding: EdgeInsets.all(8.0),
-            //     child: Icon(
-            //       Icons.search,
-            //       size: 34,
-            //       color: AppColors.white,
-            //     ),
-            //   )
-            // ],
           ),
           body: SafeArea(
             child: _widgets[index],
           ),
           bottomNavigationBar: BottomNavigationBar(
+            elevation: 5,
             currentIndex: index,
             onTap: (index) {
               navigate(index);
