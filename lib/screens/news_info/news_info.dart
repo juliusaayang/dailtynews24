@@ -1,5 +1,7 @@
+import 'package:dailynews24/services/url_launcher_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jiffy/jiffy.dart';
@@ -37,6 +39,7 @@ class _NewsInfoState extends State<NewsInfo> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         centerTitle: true,
+        scrolledUnderElevation: 0,
         title: Padding(
           padding: const EdgeInsets.only(
             bottom: 10,
@@ -50,7 +53,7 @@ class _NewsInfoState extends State<NewsInfo> {
         ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.white,
-        elevation: 2,
+        elevation: 0,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
           child: const Icon(
@@ -151,6 +154,26 @@ class _NewsInfoState extends State<NewsInfo> {
                   ),
                   Html(
                     data: widget.news.content.rendered,
+                    onLinkTap: (link, _, __) async {
+                      if (link != null) {
+                        final url = Uri.parse(link);
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(
+                            url,
+                          );
+                        } else {
+                          Fluttertoast.showToast(
+                            msg: 'Could not launch $url',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: AppColors.lighterGray,
+                            textColor: AppColors.black,
+                            fontSize: 16.0,
+                          );
+                        }
+                      }
+                    },
                   ),
                 ],
               ),
@@ -160,11 +183,16 @@ class _NewsInfoState extends State<NewsInfo> {
             ),
             GestureDetector(
               onTap: () {
-                _launchInBrowser(
-                  Uri(
-                    host: widget.news.link,
-                  ),
+                UrlLauncherUtil.launchUrlLink(
+                  context,
+                  url: widget.news.link.substring(8),
+                  scheme: 'https',
                 );
+                // _launchInBrowser(
+                //   Uri(
+                //     host: widget.news.link,
+                //   ),
+                // );
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -186,34 +214,34 @@ class _NewsInfoState extends State<NewsInfo> {
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 50,
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.facebook,
-                    size: 26,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.email_outlined,
-                    size: 26,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.wechat_sharp,
-                    size: 26,
-                  ),
-                )
-              ],
-            )
+            // const Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Padding(
+            //       padding: EdgeInsets.all(8.0),
+            //       child: Icon(
+            //         Icons.facebook,
+            //         size: 26,
+            //       ),
+            //     ),
+            //     Padding(
+            //       padding: EdgeInsets.all(8.0),
+            //       child: Icon(
+            //         Icons.email_outlined,
+            //         size: 26,
+            //       ),
+            //     ),
+            //     Padding(
+            //       padding: EdgeInsets.all(8.0),
+            //       child: Icon(
+            //         Icons.wechat_sharp,
+            //         size: 26,
+            //       ),
+            //     )
+            //   ],
+            // )
           ],
         ),
       ),

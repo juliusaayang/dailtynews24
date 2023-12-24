@@ -73,7 +73,7 @@ class _TrendingCardState extends State<TrendingCard> {
                 widget.article.title.rendered,
                 style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    color: AppColors.primary,
+                    color: AppColors.black,
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),

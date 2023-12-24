@@ -79,7 +79,7 @@ class _NewsCardState extends State<NewsCard> {
                     widget.article.title.rendered,
                     style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                        color: AppColors.primary,
+                        color: AppColors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),

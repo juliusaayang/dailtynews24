@@ -39,6 +39,7 @@ class _DashboardPageState extends State<DashboardPage> {
           backgroundColor: Colors.white.withOpacity(0.9),
           appBar: AppBar(
             centerTitle: true,
+            scrolledUnderElevation: 0,
             title: Padding(
               padding: const EdgeInsets.only(
                 bottom: 10,

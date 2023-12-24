@@ -144,7 +144,7 @@ class _HomeState extends State<Home> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.primary,
+                            color: AppColors.black,
                           ),
                         ),
                       ),
@@ -196,7 +196,7 @@ class _HomeState extends State<Home> {
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.primary,
+                            color: AppColors.black,
                           ),
                         ),
                       ),
